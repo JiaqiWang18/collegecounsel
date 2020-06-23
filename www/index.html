@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport"
+        content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+
+    <title>collegecounsel</title>
+</head>
+
+<body>
+    <div class="heading" id="statusbar">
+        <table class="statusbartb">
+            <tr>
+                <th class="appnameth">
+                    <h3 class="appname">Collegecounsel</h3>
+                </th>
+                <th class="settingsth"><button autofocus type="button" class="setbtn">Settings</button></th>
+            </tr>
+        </table>
+
+    </div>
+    <div id="container">
+        <div id="tab-content">
+
+        </div>
+    </div>
+    <div id="overlay">
+        <div class="cv-spinner">
+            <span class="spinner"></span>
+        </div>
+    </div>
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modalschoolname">loading</h2>
+            <h3>Admission Statistics: </h3>
+            <h4 class="mdacceptancerate">loading</h4>
+            <table class="modalastb">
+                <tr>
+                    <th class="stats">
+                        <p class="GPA">loading</p>
+                    </th>
+                </tr>
+                <tr>
+                    <th class="stats">
+                        <p class="SAT">loading</p>
+                    </th>
+                    <th class="stats">
+                        <p class="ACT">loading</p>
+                    </th>
+                </tr>
+                <tr>
+                    <th class="stats">
+                        <p class="interview">loading</p>
+                    </th>
+                </tr>
+                <tr>
+                    <th class="stats">
+                        <p class="admitted">loading</p>
+                    </th>
+                </tr>
+            </table>
+            <h3>School Information: </h3>
+            <table>
+                <tr>
+                    <th class="stats">
+                        <p class="graduationrate">loading</p>
+                    </th>
+                    <th class="stats">
+                        <p class="Yield">loading</p>
+                    </th>
+                </tr>
+                <tr>
+                    <th class="stats">
+                        <p class="avgcost">loading</p>
+                    </th>
+                </tr>
+                <tr>
+                    <th class="stats">
+                        <p class="totalundergrad">loading</p>
+                    </th>
+                    <th class="stats">
+                        <p class="totalenroll">loading</p>
+                    </th>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+    <footer>
+        <ul id="menu">
+            <li id="explore-tab-button" class="tab-button active" data-tab="#explore-tab">Explore</li>
+            <li id="build-tab-button" class="tab-button" data-tab="#build-tab">Build My List</li>
+            <li id="list-tab-button" class="tab-button" data-tab="#list-tab">College List</li>
+        </ul>
+    </footer>
+    <script src="js/lib/jquery-1.11.1.min.js"></script>
+    <script src="js/lib/jquery.mobile-1.4.5.min.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/Controller.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+</body>
+
+</html>

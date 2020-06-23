@@ -1,0 +1,481 @@
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* make scrollbar transparent */
+  }
+
+@keyframes modalslide {
+    0%   {left:100%;}
+    100% {left:0%}
+}
+
+.underline { 
+    text-decoration: underline;
+
+}
+
+
+
+button:focus{
+    outline: none;
+}
+
+.ui-page {
+    background-color: white;
+    border:none;
+}
+
+#container {
+	width: 100%;
+	margin: auto;
+}
+
+.heading{
+    background: #72B3FF;
+    top:0;
+    padding-top: 2px;
+    padding-bottom: 6px;
+    position: fixed;
+    width: 100%;
+}
+
+.statusbartb{
+    width:100%;
+}
+
+.appnameth{
+    float: left;
+    padding-left: 2%;
+}
+
+.setbtn{
+    background: #A0BFE4;
+    color:white;
+    border: none;
+}
+
+.settingsth{
+    float: right;
+    padding-right: 5%;
+    padding-top: 20px;
+}
+
+
+.appname{
+    color: white;
+}
+
+footer {
+	position: fixed;
+	bottom:0;
+    width:100%;
+    background: #72B3FF;
+}
+
+footer ul#menu {
+	list-style: none;
+	width: 100%;
+	overflow: auto;
+	padding: 0;
+	margin:0;
+}
+
+footer ul#menu > li.tab-button {
+	display: block;
+	width: 33.3%;
+	padding: 10px 0;
+	float: left;
+	text-align: center;
+	cursor: pointer;
+	border-top: 2px solid #ccc;
+    background: #00B2FF;
+    color:white;
+}
+footer ul#menu > li.tab-button.active {
+	font-weight: bold;
+	cursor: default;
+	border-top: 2px solid rgb(42, 42, 131);
+}
+
+
+/* css for search bar*/
+
+.searchview{
+    background: white;
+}
+
+.searchareadiv{
+    background: #72B3FF;
+    position: fixed;
+    top:63px;
+    width: 100%;
+}
+
+.searchtable{
+    padding: 5px;
+}
+
+.inputth{
+    width: 40%;
+}
+
+.searchbox{
+    border: none;
+    float: right;
+    width: 97%;
+    padding-right: 2%;
+}
+
+.filterbuttonth{
+    width:20%;
+}
+
+.sortoptionsth{
+    width: 30%;
+}
+
+.filterbutton{
+    float: left;
+    height: 25px;
+}
+
+.sortoptions{
+    float: right;
+    width: 60%;
+    height: 25px;
+}
+
+
+.searchresultdiv{
+    background: white;
+    overflow-y: auto;
+    height: 82%;
+    max-height: 82%;
+    position: fixed;
+    top:93px;
+    width: 100%;
+}
+
+.notfound{
+    position: absolute;
+    display: none; 
+    margin-left: 40%;
+    margin-right: 50%;
+    top: 40%;
+    width: 20%;
+    max-width: 150px;
+}
+
+
+/* css for college cards*/
+.collegecard{
+    width: 95%;
+    background: #A0BFE4;
+    margin:auto;
+    padding:10px;
+    margin-top: 5px;
+}
+
+.collegename{
+    color:white;
+}
+
+
+
+
+/*college data modal box*/
+/* The Modal (background) */
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top:0px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content */
+  .modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    border-radius: 0;
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+    animation-name: modalslide;
+    animation-duration: 1.5s;
+  }
+  
+  /* The Close Button */
+  .close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .stats{
+    padding-right: 10px;
+  }
+
+  /*build view css*/
+  .buildcontainer{
+    background: white;
+  }
+
+  .statsentryform{
+    width: 100%;
+    position: fixed;
+    top:60px;
+    background: #A0BFE4;
+  }
+
+  .builtlist{
+    overflow-y: auto;
+    position: fixed;
+    top:330px;
+    height: 50%;
+    max-height: 50%;
+    width: 100%;
+  }
+
+  /*build selector*/
+.buildformtitle{
+  text-align: center;
+  color: white;
+
+}
+.statsform{
+   width: 100%;
+   margin: 10px;
+}
+
+.checkerth{
+    float: left;
+    padding-right: 10px;
+}
+
+.statsmodal{
+
+}
+
+
+.mygpa{
+  margin-left: 10px;
+  width:30%;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.mytestscore{
+    width: 30%;
+    margin-left: 10px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.numberofschool{
+    margin-left: 10px;
+    width:30%;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+
+}
+
+
+.maxcost{
+  margin-left: 10px;
+  width:30%;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+
+}
+.majorinput{
+  margin-left: 10px;
+  width:80%;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+
+.georest{
+    float: left;
+    width: 40%;
+}
+
+.generalbuildth{
+    float: left;
+}
+
+.stylebutton{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.buildbutton{
+    border: none;
+    text-decoration: none;
+    padding: 5px 10px;
+    color: white;
+    background:#00B2FF;
+    outline: 0;
+}
+
+/*build college card*/
+
+.reachcard{
+    background:#E4A0A0;
+
+    width: 95%;
+    margin:auto;
+    padding:10px;
+    margin-top: 5px;
+}
+
+.matchcard{
+    background:#A0BFE4;
+
+    width: 95%;
+    margin:auto;
+    padding:10px;
+    margin-top: 5px;
+}
+
+.safetycard{
+    background: #2db300;
+    width: 95%;
+    margin:auto;
+    padding:10px;
+    margin-top: 5px;
+}
+
+.buildgpa{
+    color: white;
+}
+
+.buildSAT{
+    color: white;
+}
+
+.buildACT{
+    color: white;
+}
+
+.buildAcc{
+    color: white;
+}
+
+.buildSchoolName{
+    color: white;
+}
+
+.buildth{
+
+}
+
+.buildtr{
+
+}
+
+.buildtable{
+    width: 100%;
+}
+.buildaddbuttonth{
+    float: right;
+   
+}
+.addbutton{
+    border: none;
+    border-radius: 5px;
+}
+
+/*loading spinner css*/
+#overlay{	
+	position: fixed;
+	top: 0;
+	z-index: 100;
+	width: 100%;
+	height:100%;
+	display: none;
+	background: rgba(0,0,0,0.6);
+}
+.cv-spinner {
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;  
+}
+.spinner {
+	width: 40px;
+	height: 40px;
+	border: 4px #ddd solid;
+	border-top: 4px #2e93e6 solid;
+	border-radius: 50%;
+	animation: sp-anime 0.8s infinite linear;
+}
+@keyframes sp-anime {
+	100% { 
+		transform: rotate(360deg); 
+	}
+}
+.is-hide{
+	display:none;
+}
+
+/*listview css*/
+.listviewcontainer{
+    background: white;
+}
+
+.usercollegelist{
+    width: 100%;
+    overflow-y: auto;
+    height: 82%;
+    max-height: 82%;
+    position: fixed;
+    top:93px;
+}
+
+.listcard{
+
+}
+
+.schoolname{
+    color:white
+}
+
+.accrate{
+    color: white;
+}
+
+.location{
+    color:white
+}
+
+.removebutton{
+    position: relative;
+    left: 85%;
+}

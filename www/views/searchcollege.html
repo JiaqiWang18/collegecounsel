@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<div class="searchview">
+    <div class="searchareadiv" id="searchareadiv">
+        <table class="searchtable" style="width:100%">
+            <tr>
+                <th class="inputth">
+                    <input placeholder="search for college..." type="text" onkeyup="livesearch(this.value)"
+                        id="searchbox" class="searchbox">
+                </th>
+                <th class="sortoptionsth">
+                    <select id="searchform" class="sortoptions">
+                        <option value="alpha">Alphabetical</option>
+                        <option value="admitasc">Acceptance Rate Asc</option>
+                        <option value="admitdes">Acceptance Rate Des</option>
+                    </select>
+                </th>
+                <th class="filterbuttonth">
+                    <button class="filterbutton" type="button">Filter</button>
+                </th>
+            </tr>
+        </table>
+        <br>
+    </div>
+
+    <div class="searchresultdiv" id="searchresultdisplay">
+
+    </div>
+</div>
