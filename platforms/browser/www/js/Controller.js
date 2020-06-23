@@ -70,6 +70,7 @@ var Controller = function () {
         },
 
         loadcollegescard: function (sortway) {
+            $("#overlay").hide();
             $("#searchresultdisplay").empty();
             var searchresultdiv = document.getElementById("searchresultdisplay")
             var img = document.createElement("img")
@@ -294,6 +295,7 @@ var Controller = function () {
 
         loadBuiltList: function (result, data) {
             $(".builtlist").empty()
+            $("#overlay").hide();
 
             for (type in result) {
                 console.log(type)
