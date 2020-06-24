@@ -19,7 +19,7 @@ var Controller = function () {
         onTabClick: function (e) {
             e.preventDefault();
             $("#overlay").hide();
-
+ 
             if ($(this).hasClass('active')) {
                 return;
             }
