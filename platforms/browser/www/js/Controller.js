@@ -19,7 +19,7 @@ var Controller = function () {
         onTabClick: function (e) {
             e.preventDefault();
             $("#overlay").hide();
- 
+
             if ($(this).hasClass('active')) {
                 return;
             }
@@ -63,7 +63,7 @@ var Controller = function () {
                         self.loadcollegescard(option.val())
                     });
                     $("#overlay").hide();
-                   
+
                     self.loadcollegescard();
 
                 });
@@ -76,10 +76,10 @@ var Controller = function () {
             var img = document.createElement("img")
             img.setAttribute("src", "img/notfound.png");
             //img.setAttribute("width", "70");
-           // img.setAttribute("height", "70");
+            // img.setAttribute("height", "70");
             img.setAttribute("alt", "remove");
             img.setAttribute("class", "notfound")
-            img.setAttribute("id","notfound")
+            img.setAttribute("id", "notfound")
             searchresultdiv.appendChild(img)
             var stored = JSON.parse(localStorage.getItem("alldata") || "null")
             console.log(sortway)
