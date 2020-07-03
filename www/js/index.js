@@ -22,7 +22,7 @@ var app = {
                     message,    // message
                     null,       // callback
                     "Warning", // title
-                    'Okay'        // buttonName
+                    'Ok'        // buttonName
                 );
             };
         }

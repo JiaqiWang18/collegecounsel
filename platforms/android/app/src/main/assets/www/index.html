@@ -20,7 +20,8 @@
                 <th class="appnameth">
                     <h3 class="appname">Collegecounsel</h3>
                 </th>
-                <th class="settingsth"><button autofocus type="button" class="setbtn">Settings</button></th>
+                <th class="settingsth"><button type="button" class="setbtn">About</button></th>
+                
             </tr>
         </table>
 
@@ -41,7 +42,10 @@
         <!-- Modal content -->
         <div class="modal-content">
             <span class="close">&times;</span>
-            <h2 id="modalschoolname">loading</h2>
+            <div class="modalschoolnamediv">
+                <h2 id="modalschoolname">loading</h2>
+            </div>
+
             <h3>Admission Statistics: </h3>
             <h4 class="mdacceptancerate">loading</h4>
             <table class="modalastb">
@@ -96,6 +100,33 @@
         </div>
 
     </div>
+
+    <div id="ttbox" class="ttbox">
+
+        <!-- Modal content -->
+        <div class="ttcontent">
+            <h3>Welcome!</h3>
+            <p>Please first click on the "about" button on the upper right corner 
+                to find out how to use this app!
+            </p>
+            <br>
+            <table class = "welcometb">
+                <tr>
+                    <th class= "checkerth">
+                        <input type = "checkbox" class = "ifnever">
+                    </th>
+                    <th class = "neverth"><p>Never show again</p></th>
+                    <th class = "okbtnth">
+                        <button type = "button" class = "okbtn">Ok</button>
+                    </th>
+                </tr>
+
+               
+            </table>
+        </div>
+
+    </div>
+    
     <footer>
         <ul id="menu">
             <li id="explore-tab-button" class="tab-button active" data-tab="#explore-tab">Explore</li>

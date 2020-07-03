@@ -3,9 +3,15 @@
     background: transparent; /* make scrollbar transparent */
   }
 
+
 @keyframes modalslide {
     0%   {left:100%;}
     100% {left:0%}
+}
+
+@keyframes modalgone {
+    0%   {left:0%;}
+    100% {left:100%}
 }
 
 .underline { 
@@ -13,10 +19,12 @@
 
 }
 
+select:focus {
+    outline: none;
+}
 
 
 button:focus{
-    outline: none;
 }
 
 .ui-page {
@@ -48,7 +56,7 @@ button:focus{
 }
 
 .setbtn{
-    background: #A0BFE4;
+    background: #72B3FF;
     color:white;
     border: none;
 }
@@ -123,6 +131,7 @@ footer ul#menu > li.tab-button.active {
     float: right;
     width: 97%;
     padding-right: 2%;
+    height: 25px;
 }
 
 .filterbuttonth{
@@ -131,18 +140,18 @@ footer ul#menu > li.tab-button.active {
 
 .sortoptionsth{
     width: 30%;
-}
-
-.filterbutton{
     float: left;
-    height: 25px;
 }
 
 .sortoptions{
-    float: right;
-    width: 60%;
+    width: 80%;
+    float: left;
+    height: 25px;
+    border:none;
     height: 25px;
 }
+
+
 
 
 .searchresultdiv{
@@ -173,6 +182,7 @@ footer ul#menu > li.tab-button.active {
     margin:auto;
     padding:10px;
     margin-top: 5px;
+    border-radius: 5px;
 }
 
 .collegename{
@@ -203,12 +213,13 @@ footer ul#menu > li.tab-button.active {
   .modal-content {
     background-color: #fefefe;
     margin: auto;
-    border-radius: 0;
+    border-radius: 150;
+    top:5%;
     padding: 20px;
-    width: 100%;
-    height: 100%;
+    width: 95%;
+    height: 90%;
     animation-name: modalslide;
-    animation-duration: 1.5s;
+    animation-duration: 1s;
   }
   
   /* The Close Button */
@@ -217,6 +228,8 @@ footer ul#menu > li.tab-button.active {
     float: right;
     font-size: 28px;
     font-weight: bold;
+    animation-name: modalgone;
+    animation-duration: 0.5s;
   }
   
   .close:hover,
@@ -456,7 +469,7 @@ footer ul#menu > li.tab-button.active {
     height: 82%;
     max-height: 82%;
     position: fixed;
-    top:93px;
+    top:85px;
 }
 
 .listcard{
@@ -477,5 +490,73 @@ footer ul#menu > li.tab-button.active {
 
 .removebutton{
     position: relative;
-    left: 85%;
+    left: 90%;
 }
+
+/* settings page*/
+
+.settingmain{
+    width: 100%;
+    background: white;
+    overflow-y: auto;
+    height: 82%;
+    max-height: 82%;
+    position: fixed;
+    top:82px;
+}
+
+.center{
+    width: 95%;
+    text-align: center;
+}
+
+.about{
+    text-align: center;
+}
+
+.usage{
+    width: 95%;
+}
+
+/*ttbox*/
+
+.ttbox {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top:200px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content */
+  .ttcontent {
+    background-color: #fefefe;
+    margin: auto;
+    border-radius: 150;
+    top:5%;
+    padding: 20px;
+    width: 80%;
+    height: min-content;
+  }
+
+  .welcometb{
+      width: 100%;
+  }
+
+  .checkerth{
+      float: left;
+      width: min-content;
+  }
+
+  .neverth{
+      float: left;
+  }
+  .okbtnth{
+      float: right;
+  }

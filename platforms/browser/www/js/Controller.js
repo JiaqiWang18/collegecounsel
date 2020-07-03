@@ -6,6 +6,7 @@ var Controller = function () {
             self = this;
             console.log("runned controller")
             self.bindEvents();
+            self.loadWelcome();
             self.renderSearchView();
             $(document).ajaxSend(function () {
                 $("#overlay").fadeIn(300);
@@ -14,6 +15,16 @@ var Controller = function () {
 
         bindEvents: function () {
             $('.tab-button').on('click', this.onTabClick);
+            $('.setbtn').on('click',this.openSettings);
+            $('.okbtn').on('click',function () {
+                modal = document.getElementById("ttbox")
+                modal.style.display = "none";
+                var ifnever = $(".ifnever").is(":checked")
+                if(ifnever){
+                    localStorage.setItem("show",JSON.stringify(["nay"]))
+                }
+
+            });
         },
 
         onTabClick: function (e) {
@@ -26,7 +37,7 @@ var Controller = function () {
             document.getElementById('explore-tab-button').style.pointerEvents = 'none';
             document.getElementById('build-tab-button').style.pointerEvents = 'none';
             document.getElementById('list-tab-button').style.pointerEvents = 'none';
-
+            
             var tab = $(this).data('tab');
             if (tab === '#explore-tab') {
                 self.renderSearchView();
@@ -36,6 +47,27 @@ var Controller = function () {
             }
             else {
                 self.renderListView();
+            }
+        },
+
+        openSettings:function(){
+            var $tab = $('#tab-content');
+            $tab.empty();
+            $('.tab-button').removeClass('active');
+            $("#tab-content").load("./views/settingmain.html",
+            function () {
+                $("#overlay").hide();
+                $(".setbtn").prop('disabled', true);
+                $(".setbtn").html("")
+            })
+        },
+
+        loadWelcome:function(){
+            var flag = JSON.parse(localStorage.getItem("sshow") || 'null')
+            if (!flag){
+                modal = document.getElementById("ttbox")
+                modal.style.display = "block";
+
             }
         },
 
@@ -49,6 +81,10 @@ var Controller = function () {
             $tab.empty();
             $("#tab-content").load("./views/searchcollege.html",
                 function () {
+                    $("#overlay").hide();
+                    $(".setbtn").html("About")
+                    $(".setbtn").prop('disabled', false);
+
                     document.getElementById('explore-tab-button').style.pointerEvents = 'auto';
                     document.getElementById('build-tab-button').style.pointerEvents = 'auto';
                     document.getElementById('list-tab-button').style.pointerEvents = 'auto';
@@ -56,7 +92,7 @@ var Controller = function () {
                     $(".appname").text("Collegecounsel");
                     $("#overlay").hide();
 
-                    $('.filterbutton').on('click', function () {
+                    $('.sortoptions').on('change', function () {
                         console.log("clicked")
                         var option = $('#searchform').find(":selected");
                         console.log(option.val())
@@ -86,12 +122,13 @@ var Controller = function () {
 
             if (sortway) {
                 $.ajax({
-                    url: `https://collegedatasender.herokuapp.com/getData?sort=${sortway}`,
+                    url: `https://collegedataserver.herokuapp.com/getData?sort=${sortway}`,
                     success: function (result) {
                         self.subLoadCard(result)
                         self.LoadStatsModal(".collegename");
                     },
                     error: function (xhr, status, error) {
+                        $("#overlay").hide();
                         var errorMessage = xhr.status + ': ' + xhr.statusText
                         alert('Error - ' + errorMessage);
                     }
@@ -103,7 +140,7 @@ var Controller = function () {
             } else {
                 if (!stored) {
                     $.ajax({
-                        url: 'https://collegedatasender.herokuapp.com/getData',
+                        url: 'https://collegedataserver.herokuapp.com/getData',
                         success: function (result) {
                             localStorage.setItem("alldata", JSON.stringify(result))
                             self.subLoadCard(result)
@@ -111,6 +148,7 @@ var Controller = function () {
 
                         },
                         error: function (xhr, status, error) {
+                            $("#overlay").hide();
                             var errorMessage = xhr.status + ': ' + xhr.statusText
                             alert('Error - ' + errorMessage);
                         }
@@ -171,9 +209,14 @@ var Controller = function () {
 
                 if (!stored) {
                     $.ajax({
-                        url: "https://collegedatasender.herokuapp.com/getData",
+                        url: "https://collegedataserver.herokuapp.com/getData",
                         success: function (result) {
                             self.subLoadModal(result, schoolname)
+                        },
+                        error: function (xhr, status, error) {
+                            $("#overlay").hide();
+                            var errorMessage = xhr.status + ': ' + xhr.statusText
+                            alert('Error - ' + errorMessage);
                         }
                     }).done(function () {
                         setTimeout(function () {
@@ -239,6 +282,19 @@ var Controller = function () {
             $tab.empty();
             $("#tab-content").load("./views/build.html", function () {
                 $.mobile.loading().hide();
+                $(".setbtn").html("About")
+                $("#overlay").hide();
+                $(".setbtn").prop('disabled', false);
+
+                $('#costfilter').animate({
+                    opacity: 0.6
+                }, 50);
+                $('#geofilter').animate({
+                    opacity: 0.6
+                }, 50);
+                $('#majorfilter').animate({
+                    opacity: 0.6
+                }, 50);
                 document.getElementById('explore-tab-button').style.pointerEvents = 'auto';
                 document.getElementById('build-tab-button').style.pointerEvents = 'auto';
                 document.getElementById('list-tab-button').style.pointerEvents = 'auto';
@@ -253,24 +309,43 @@ var Controller = function () {
                     function () {
                         if (this.checked) {
                             $(".maxcost").prop('disabled', false);
+                            $('#costfilter').animate({
+                                opacity: 1.0
+                            }, 500);
                         } else {
                             $(".maxcost").prop('disabled', true);
+                            $('#costfilter').animate({
+                                opacity: 0.6
+                            }, 500);
                         }
+                       
                     });
                 $('.ifgeo').change(
                     function () {
                         if (this.checked) {
                             $(".georest").prop('disabled', false);
+                            $('#geofilter').animate({
+                                opacity: 1.0
+                            }, 500);
                         } else {
                             $(".georest").prop('disabled', true);
+                            $('#geofilter').animate({
+                                opacity: 0.6
+                            }, 500);
                         }
                     });
                 $('.ifmajor').change(
                     function () {
                         if (this.checked) {
                             $(".majorinput").prop('disabled', false);
+                            $('#majorfilter').animate({
+                                opacity: 1.0
+                            }, 500);
                         } else {
                             $(".majorinput").prop('disabled', true);
+                            $('majorfilter').animate({
+                                opacity: 0.6
+                            }, 500);
                         }
                     });
                 $(".buildbutton").on('click', function () {
@@ -454,15 +529,20 @@ var Controller = function () {
             }
 
             $.ajax({
-                url: `https://collegedatasender.herokuapp.com/build${querystring}`,
+                url: `https://collegedataserver.herokuapp.com/build${querystring}`,
                 success: function (result) {
                     $.ajax({
-                        url: "https://collegedatasender.herokuapp.com/getData",
+                        url: "https://collegedataserver.herokuapp.com/getData",
                         success: function (data) {
                             localStorage.setItem("builtlist", JSON.stringify(result))
                             self.loadBuiltList(result, data)
 
 
+                        },
+                        error: function (xhr, status, error) {
+                            $("#overlay").hide();
+                            var errorMessage = xhr.status + ': ' + xhr.statusText
+                            alert('Error - ' + errorMessage);
                         }
                     }).done(function () {
                         setTimeout(function () {
@@ -471,7 +551,6 @@ var Controller = function () {
                     });
                 },
                 error: function (xhr, status, error) {
-                    var errorMessage = xhr.status + ': ' + xhr.statusText
                     $("#overlay").hide();
                     alert("Invalid Input");
                 }
@@ -487,6 +566,9 @@ var Controller = function () {
 
             $tab.empty();
             $("#tab-content").load("./views/list.html", function () {
+                $(".setbtn").html("About")
+                $(".setbtn").prop('disabled', false);
+
                 $.mobile.loading().hide();
                 document.getElementById('explore-tab-button').style.pointerEvents = 'auto';
                 document.getElementById('build-tab-button').style.pointerEvents = 'auto';
@@ -564,12 +646,15 @@ var Controller = function () {
 
             if (!stored) {
                 $.ajax({
-                    url: 'https://collegedatasender.herokuapp.com/getData',
+                    url: 'https://collegedataserver.herokuapp.com/getData',
                     success: function (result) {
                         localStorage.setItem("alldata", JSON.stringify(result))
                         return JSON.parse(localStorage.getItem("alldata"))
                     },
                     error: function (xhr, status, error) {
+                        
+                        $("#overlay").hide();
+                            
                         var errorMessage = xhr.status + ': ' + xhr.statusText
                         alert('Error - ' + errorMessage);
                         return {}
