@@ -299,7 +299,30 @@ var Controller = function () {
                 document.getElementById('build-tab-button').style.pointerEvents = 'auto';
                 document.getElementById('list-tab-button').style.pointerEvents = 'auto';
                 $("#overlay").hide();
-
+                var gpa = localStorage.getItem("mygpa")||"null"
+                if(gpa != "null"){
+                    $(".mygpa").val(gpa)
+                }
+                var test = localStorage.getItem("mytestscore")||"null"
+                if(test != "null"){
+                    $(".mytestscore").val(test)
+                }
+                var num = localStorage.getItem("mynum")||"null"
+                if(num != "null"){
+                    $(".numberofschool").val(num)
+                }
+                var cost = localStorage.getItem("mycost")||"null"
+                if(cost != "null"){
+                    $(".maxcost").val(cost)
+                }
+                var geo = localStorage.getItem("mystate")||"null"
+                if(geo != "null"){
+                    $(".georest").val(geo)
+                }
+                var major = localStorage.getItem("mymajor")||"null"
+                if(major != "null"){
+                    $(".majorinput").val(major)
+                }
                 $(".appname").text("Build My List");
                 $(".majorinput").prop('disabled', true);
                 $(".maxcost").prop('disabled', true);
@@ -484,9 +507,12 @@ var Controller = function () {
             var selectors = [".mygpa", ".mytestscore", ".numberofschool"]
             var querystring = "?"
             var gpa = $(".mygpa").val()
+            localStorage.setItem("mygpa",gpa)
             console.log(gpa)
             querystring += `gpa=${gpa}`
+
             var testscore = $(".mytestscore").val()
+            localStorage.setItem("mytestscore",testscore)
             if (testscore.length == 2) {
                 var testtype = 'act'
             }
@@ -495,21 +521,27 @@ var Controller = function () {
             }
             querystring += `&${testtype}=${testscore}`
             var number = $(".numberofschool").val()
+            localStorage.setItem("mynum",number)
+
             querystring += `&number=${number}`
             var ifcost = $(".ifcost").is(":checked")
             if (ifcost) {
                 selectors.push(".maxcost")
                 querystring += `&maxcost=${$(".maxcost").val()}`
+                localStorage.setItem("mycost",$(".maxcost").val())
+
             }
             var ifgeo = $(".ifgeo").is(":checked")
             if (ifgeo) {
                 selectors.push(".georest")
                 querystring += `&state=${$(".georest").find(":selected").val()}`
+                localStorage.setItem("mystate",$(".georest").find(":selected").val())
             }
             var ifmajor = $(".ifmajor").is(":checked")
             if (ifmajor) {
                 selectors.push(".majorinput")
                 querystring += `&major=${$(".majorinput").val()}`
+                localStorage.setItem("mymajor",$(".majorinput").val())
             }
             for (var i = 0; i < selectors.length; i++) {
                 var tester = $(selectors[i]).val()
@@ -593,9 +625,12 @@ var Controller = function () {
                             console.log(localStorage.getItem("mylist"))
                             var listdiv = document.getElementById("usercollegelist")
                             var noschool = document.createElement("h3")
+                            var nodiv = document.createElement("div")
+                            nodiv.setAttribute("class","nodiv")
                             noschool.innerHTML = "You have no colleges under you list. Go to 'Build my List' to add colleges."
                             if (!list || Object.keys(list).length == 0) {
-                                listdiv.appendChild(noschool)
+                                nodiv.appendChild(noschool)
+                                listdiv.appendChild(nodiv)
                                 return;
                             }
                         }
@@ -615,9 +650,12 @@ var Controller = function () {
             var list = JSON.parse(localStorage.getItem("mylist") || "null")
             var listdiv = document.getElementById("usercollegelist")
             var noschool = document.createElement("h3")
+            var nodiv = document.createElement("div")
+            nodiv.setAttribute("class","nodiv")
             noschool.innerHTML = "You have no colleges under you list. Go to 'Build my List' to add colleges."
             if (!list || Object.keys(list).length == 0) {
-                listdiv.appendChild(noschool)
+                nodiv.appendChild(noschool)
+                listdiv.appendChild(nodiv)
                 return;
             }
             for (schoolname in list) {
