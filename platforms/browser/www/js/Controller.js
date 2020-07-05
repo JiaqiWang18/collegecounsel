@@ -503,6 +503,8 @@ var Controller = function () {
         },
 
         buildcollegelist: function () {
+            $(".slide").slideUp();
+
             console.log("build")
             var selectors = [".mygpa", ".mytestscore", ".numberofschool"]
             var querystring = "?"
