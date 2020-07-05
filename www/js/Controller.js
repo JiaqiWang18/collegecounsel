@@ -385,6 +385,7 @@ var Controller = function () {
 
         },
 
+        
 
         loadBuiltList: function (result, data) {
             $(".builtlist").empty()
