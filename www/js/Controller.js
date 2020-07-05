@@ -7,21 +7,37 @@ var Controller = function () {
             console.log("runned controller")
             self.bindEvents();
             self.loadWelcome();
-            self.renderSearchView();
             $(document).ajaxSend(function () {
                 $("#overlay").fadeIn(300);
             });
+            $.ajax({
+                url: 'https://collegedataserver.herokuapp.com/getData',
+                success: function (result) {
+                    localStorage.setItem("alldata", JSON.stringify(result))
+                    self.renderSearchView();
+                },
+                error: function (xhr, status, error) {
+                    $("#overlay").hide();
+                    var errorMessage = xhr.status + ': ' + xhr.statusText
+                    alert('Error - ' + errorMessage);
+                }
+            }).done(function () {
+                setTimeout(function () {
+                    $("#overlay").fadeOut(300);
+                }, 500);
+            })
+
         },
 
         bindEvents: function () {
             $('.tab-button').on('click', this.onTabClick);
-            $('.setbtn').on('click',this.openSettings);
-            $('.okbtn').on('click',function () {
+            $('.setbtn').on('click', this.openSettings);
+            $('.okbtn').on('click', function () {
                 modal = document.getElementById("ttbox")
                 modal.style.display = "none";
                 var ifnever = $(".ifnever").is(":checked")
-                if(ifnever){
-                    localStorage.setItem("show",JSON.stringify(["nay"]))
+                if (ifnever) {
+                    localStorage.setItem("show", JSON.stringify(["nay"]))
                 }
 
             });
@@ -37,7 +53,7 @@ var Controller = function () {
             document.getElementById('explore-tab-button').style.pointerEvents = 'none';
             document.getElementById('build-tab-button').style.pointerEvents = 'none';
             document.getElementById('list-tab-button').style.pointerEvents = 'none';
-            
+
             var tab = $(this).data('tab');
             if (tab === '#explore-tab') {
                 self.renderSearchView();
@@ -50,21 +66,21 @@ var Controller = function () {
             }
         },
 
-        openSettings:function(){
+        openSettings: function () {
             var $tab = $('#tab-content');
             $tab.empty();
             $('.tab-button').removeClass('active');
             $("#tab-content").load("./views/settingmain.html",
-            function () {
-                $("#overlay").hide();
-                $(".setbtn").prop('disabled', true);
-                $(".setbtn").html("")
-            })
+                function () {
+                    $("#overlay").hide();
+                    $(".setbtn").prop('disabled', true);
+                    $(".setbtn").html("")
+                })
         },
 
-        loadWelcome:function(){
+        loadWelcome: function () {
             var flag = JSON.parse(localStorage.getItem("show") || 'null')
-            if (!flag){
+            if (!flag) {
                 modal = document.getElementById("ttbox")
                 modal.style.display = "block";
 
@@ -138,33 +154,9 @@ var Controller = function () {
                     }, 500);
                 });
             } else {
-                if (!stored) {
-                    $.ajax({
-                        url: 'https://collegedataserver.herokuapp.com/getData',
-                        success: function (result) {
-                            localStorage.setItem("alldata", JSON.stringify(result))
-                            self.subLoadCard(result)
-                            self.LoadStatsModal(".collegename");
-
-                        },
-                        error: function (xhr, status, error) {
-                            $("#overlay").hide();
-                            var errorMessage = xhr.status + ': ' + xhr.statusText
-                            alert('Error - ' + errorMessage);
-                        }
-                    }).done(function () {
-                        setTimeout(function () {
-                            $("#overlay").fadeOut(300);
-                        }, 500);
-                    })
-                }
-                else {
-                    console.log("load from local")
-                    self.subLoadCard(stored)
-                    self.LoadStatsModal(".collegename");
-
-                }
-
+                console.log("load from local")
+                self.subLoadCard(stored)
+                self.LoadStatsModal(".collegename");
             }
 
         },
@@ -282,6 +274,7 @@ var Controller = function () {
             $tab.empty();
             $("#tab-content").load("./views/build.html", function () {
                 $.mobile.loading().hide();
+
                 $(".setbtn").html("About")
                 $("#overlay").hide();
                 $(".setbtn").prop('disabled', false);
@@ -299,28 +292,28 @@ var Controller = function () {
                 document.getElementById('build-tab-button').style.pointerEvents = 'auto';
                 document.getElementById('list-tab-button').style.pointerEvents = 'auto';
                 $("#overlay").hide();
-                var gpa = localStorage.getItem("mygpa")||"null"
-                if(gpa != "null"){
+                var gpa = localStorage.getItem("mygpa") || "null"
+                if (gpa != "null") {
                     $(".mygpa").val(gpa)
                 }
-                var test = localStorage.getItem("mytestscore")||"null"
-                if(test != "null"){
+                var test = localStorage.getItem("mytestscore") || "null"
+                if (test != "null") {
                     $(".mytestscore").val(test)
                 }
-                var num = localStorage.getItem("mynum")||"null"
-                if(num != "null"){
+                var num = localStorage.getItem("mynum") || "null"
+                if (num != "null") {
                     $(".numberofschool").val(num)
                 }
-                var cost = localStorage.getItem("mycost")||"null"
-                if(cost != "null"){
+                var cost = localStorage.getItem("mycost") || "null"
+                if (cost != "null") {
                     $(".maxcost").val(cost)
                 }
-                var geo = localStorage.getItem("mystate")||"null"
-                if(geo != "null"){
+                var geo = localStorage.getItem("mystate") || "null"
+                if (geo != "null") {
                     $(".georest").val(geo)
                 }
-                var major = localStorage.getItem("mymajor")||"null"
-                if(major != "null"){
+                var major = localStorage.getItem("mymajor") || "null"
+                if (major != "null") {
                     $(".majorinput").val(major)
                 }
                 $(".appname").text("Build My List");
@@ -341,7 +334,7 @@ var Controller = function () {
                                 opacity: 0.6
                             }, 500);
                         }
-                       
+
                     });
                 $('.ifgeo').change(
                     function () {
@@ -372,6 +365,7 @@ var Controller = function () {
                         }
                     });
                 $(".buildbutton").on('click', function () {
+                    console.log("run")
                     self.buildcollegelist();
                 })
 
@@ -381,6 +375,7 @@ var Controller = function () {
                 var colleges = JSON.parse(localStorage.getItem("alldata") || "null")
                 if (colleges && list) {
                     $("#overlay").hide();
+                    console.log("here")
 
                     console.log(colleges)
                     console.log(list)
@@ -394,7 +389,7 @@ var Controller = function () {
         loadBuiltList: function (result, data) {
             $(".builtlist").empty()
             $("#overlay").hide();
-
+            self.handleDropDown(0)
             for (type in result) {
                 console.log(type)
                 if (type == "Reach") {
@@ -410,7 +405,7 @@ var Controller = function () {
                 console.log(result)
                 for (i in result[type]) {
                     school = result[type][i]
-                    console.log(result[school])
+                    console.log(school)
                     console.log(data[school]["acceptance rate"])
                     var container = document.getElementById("builtlist");
                     var div = document.createElement('div');
@@ -478,7 +473,7 @@ var Controller = function () {
                     container.appendChild(div)
 
                 }
-
+             
             }
             self.LoadStatsModal(".buildSchoolName")
             $(".addbutton").click(function () {
@@ -502,19 +497,33 @@ var Controller = function () {
             })
         },
 
-        buildcollegelist: function () {
-            $(".slide").slideUp();
+        handleDropDown: function (speed) {
+           
+            $(".slide").slideUp(speed,function () {
+                $(".buildbutton").hide()
+                $(".openform").show()
+                $(".openform").on("click", function () {
+                    $(".slide").slideDown(speed,function () {
+                        $(".buildbutton").show()
+                        $(".openform").hide()
+                    })
+                })
+            });
+           
+        },
 
+        buildcollegelist: function () {
+            self.handleDropDown()
             console.log("build")
             var selectors = [".mygpa", ".mytestscore", ".numberofschool"]
             var querystring = "?"
             var gpa = $(".mygpa").val()
-            localStorage.setItem("mygpa",gpa)
+            localStorage.setItem("mygpa", gpa)
             console.log(gpa)
             querystring += `gpa=${gpa}`
 
             var testscore = $(".mytestscore").val()
-            localStorage.setItem("mytestscore",testscore)
+            localStorage.setItem("mytestscore", testscore)
             if (testscore.length == 2) {
                 var testtype = 'act'
             }
@@ -523,45 +532,28 @@ var Controller = function () {
             }
             querystring += `&${testtype}=${testscore}`
             var number = $(".numberofschool").val()
-            localStorage.setItem("mynum",number)
+            localStorage.setItem("mynum", number)
 
             querystring += `&number=${number}`
             var ifcost = $(".ifcost").is(":checked")
             if (ifcost) {
                 selectors.push(".maxcost")
                 querystring += `&maxcost=${$(".maxcost").val()}`
-                localStorage.setItem("mycost",$(".maxcost").val())
+                localStorage.setItem("mycost", $(".maxcost").val())
 
             }
             var ifgeo = $(".ifgeo").is(":checked")
             if (ifgeo) {
                 selectors.push(".georest")
                 querystring += `&state=${$(".georest").find(":selected").val()}`
-                localStorage.setItem("mystate",$(".georest").find(":selected").val())
+                localStorage.setItem("mystate", $(".georest").find(":selected").val())
             }
             var ifmajor = $(".ifmajor").is(":checked")
             if (ifmajor) {
                 selectors.push(".majorinput")
                 querystring += `&major=${$(".majorinput").val()}`
-                localStorage.setItem("mymajor",$(".majorinput").val())
+                localStorage.setItem("mymajor", $(".majorinput").val())
             }
-            for (var i = 0; i < selectors.length; i++) {
-                var tester = $(selectors[i]).val()
-
-                if (selectors[i] != ".majorinput" && selectors[i] != ".georest") {
-                    if (isNaN(parseFloat(tester))) {
-                        alert("Invalid Input");
-                        return;
-                    }
-                }
-                else {
-                    if (tester == "" || tester == null) {
-                        alert("Invalid Input");
-                        return;
-                    }
-                }
-            }
-
             $.ajax({
                 url: `https://collegedataserver.herokuapp.com/build${querystring}`,
                 success: function (result) {
@@ -628,7 +620,7 @@ var Controller = function () {
                             var listdiv = document.getElementById("usercollegelist")
                             var noschool = document.createElement("h3")
                             var nodiv = document.createElement("div")
-                            nodiv.setAttribute("class","nodiv")
+                            nodiv.setAttribute("class", "nodiv")
                             noschool.innerHTML = "You have no colleges under you list. Go to 'Build my List' to add colleges."
                             if (!list || Object.keys(list).length == 0) {
                                 nodiv.appendChild(noschool)
@@ -653,7 +645,7 @@ var Controller = function () {
             var listdiv = document.getElementById("usercollegelist")
             var noschool = document.createElement("h3")
             var nodiv = document.createElement("div")
-            nodiv.setAttribute("class","nodiv")
+            nodiv.setAttribute("class", "nodiv")
             noschool.innerHTML = "You have no colleges under you list. Go to 'Build my List' to add colleges."
             if (!list || Object.keys(list).length == 0) {
                 nodiv.appendChild(noschool)
@@ -692,9 +684,9 @@ var Controller = function () {
                         return JSON.parse(localStorage.getItem("alldata"))
                     },
                     error: function (xhr, status, error) {
-                        
+
                         $("#overlay").hide();
-                            
+
                         var errorMessage = xhr.status + ': ' + xhr.statusText
                         alert('Error - ' + errorMessage);
                         return {}
