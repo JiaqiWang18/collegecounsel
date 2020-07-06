@@ -226,7 +226,7 @@ footer ul#menu > li.tab-button.active {
     width: 95%;
     height: 90%;
     animation-name: modalslide;
-    animation-duration: 1s;
+    animation-duration: 0.5s;
   }
   
   /* The Close Button */

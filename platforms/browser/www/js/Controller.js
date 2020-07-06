@@ -380,10 +380,14 @@ var Controller = function () {
                     console.log(colleges)
                     console.log(list)
                     self.loadBuiltList(list, colleges)
+                }else{
+                    $(".openform").hide();
+
                 }
             });
 
         },
+
 
 
         loadBuiltList: function (result, data) {
