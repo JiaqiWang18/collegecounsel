@@ -34,5 +34,13 @@
     <allow-intent href="geo:*" />
     <icon src="www/img/RoundedIcon.png" />
     <allow-intent href="market:*" />
+    <splash density="land-hdpi" src="www/img/splashandroid/drawable-land-hdpi/screen.png" />
+    <splash density="land-ldpi" src="www/img/splashandroid/drawable-land-ldpi/screen.png" />
+    <splash density="land-mdpi" src="www/img/splashandroid/drawable-land-mdpi/screen.png" />
+    <splash density="land-xhdpi" src="www/img/splashandroid/drawable-land-xhdpi/screen.png" />
+    <splash density="port-hdpi" src="www/img/splashandroid/drawable-hdpi/screen.png" />
+    <splash density="port-ldpi" src="www/img/splashandroid/drawable-ldpi/screen.png" />
+    <splash density="port-mdpi" src="www/img/splashandroid/drawable-mdpi/screen.png" />
+    <splash density="port-xhdpi" src="www/img/splashandroid/drawable-xhdpi/screen.png" />
     <preference name="loglevel" value="DEBUG" />
 </widget>
