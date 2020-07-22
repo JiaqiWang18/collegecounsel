@@ -15,10 +15,10 @@
     </feature>
     <name>collegecounsel</name>
     <description>
-        A sample Apache Cordova application that responds to the deviceready event.
+       A college list builder app that assist with the college search process
     </description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
-        Apache Cordova Team
+    <author email="jacky200218@gmail.com" href="">
+        Jacky Wang
     </author>
     <content src="index.html" />
     <access origin="*" />
@@ -28,6 +28,7 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    <icon src="www/img/RoundedIcon.png" />
     <allow-intent href="market:*" />
     <preference name="loglevel" value="DEBUG" />
 </widget>

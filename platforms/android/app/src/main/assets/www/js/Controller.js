@@ -246,6 +246,24 @@ var Controller = function () {
             $(".avgcost").text(`Average Annual Cost: $${data["average cost of attendance per year"]}`)
             $(".totalundergrad").text(`Total Undergrad Enrollment: ${data["estimated total undergrad enrollment"]}`)
             $(".totalenroll").text(`Total Student Enrollment: ${data["estimated total enrollment"]}`)
+            if(data["test optional"]=="Yes"){
+                $(".testoptional").text("Test Optional,score considered if submitted")
+            }else if(data["test optional"]=="No"){
+                $(".testoptional").text("Not test optional")
+            }else{
+                $(".testoptional").text(data["test optional"])
+            }
+            if(data["admissions stats"]){
+                $(".morestats").text("More Statistics")
+                $(".morestats").show()
+                $(".morestats").attr("href", data["admissions stats"])
+            }
+            if(data["admissions req"]){
+                $(".appreq").text("Application Requirements")
+                $(".appreq").attr("href", data["admissions req"])
+
+            }
+            
 
             modal.style.display = "block";
 

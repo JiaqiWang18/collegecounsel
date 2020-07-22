@@ -250,6 +250,10 @@ footer ul#menu > li.tab-button.active {
     padding-right: 10px;
   }
 
+  .morestats{
+      display: none;
+  }
+
   /*build view css*/
   .buildcontainer{
     background: white;
