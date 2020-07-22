@@ -21,6 +21,9 @@
     },
     "cordova-plugin-x-toast": {
       "PACKAGE_NAME": "collegecounsel.mobile"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "collegecounsel.mobile"
     }
   },
   "dependent_plugins": {}

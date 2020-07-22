@@ -31,6 +31,20 @@ module.exports = [
         "clobbers": [
             "window.plugins.toast"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-splashscreen/src/browser/SplashScreenProxy.js",
+        "id": "cordova-plugin-splashscreen.SplashScreenProxy",
+        "pluginId": "cordova-plugin-splashscreen",
+        "runs": true
+    },
+    {
+        "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
+        "id": "cordova-plugin-splashscreen.SplashScreen",
+        "pluginId": "cordova-plugin-splashscreen",
+        "clobbers": [
+            "navigator.splashscreen"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -40,7 +54,8 @@ module.exports.metadata =
     "cordova-plugin-dialogs": "2.0.2",
     "cordova-plugin-console": "1.1.0",
     "cordova-sqlite-storage": "5.0.1-dev",
-    "cordova-plugin-x-toast": "2.7.2"
+    "cordova-plugin-x-toast": "2.7.2",
+    "cordova-plugin-splashscreen": "6.0.0"
 }
 // BOTTOM OF METADATA
 });

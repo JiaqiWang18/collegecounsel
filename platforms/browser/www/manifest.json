@@ -4,8 +4,14 @@
   "name": "collegecounsel",
   "short_name": "collegecounsel",
   "version": "collegecounsel.mobile",
-  "description": "A sample Apache Cordova application that responds to the deviceready event.",
-  "author": "Apache Cordova Team",
-  "icons": [],
+  "description": "A college list builder app that assist with the college search process",
+  "author": "Jacky Wang",
+  "icons": [
+    {
+      "src": "www/img/RoundedIcon.png",
+      "type": "image/png",
+      "sizes": "undefinedxundefined"
+    }
+  ],
   "start_url": "index.html"
 }
