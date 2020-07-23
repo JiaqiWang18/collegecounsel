@@ -8,7 +8,7 @@ var Controller = function () {
             self.bindEvents();
             self.loadWelcome();
             $(document).ajaxSend(function () {
-                $("#overlay").fadeIn(300);
+                //$("#overlay").fadeIn(300);
             });
             $.ajax({
                 url: 'https://collegedataserver.herokuapp.com/getData',
