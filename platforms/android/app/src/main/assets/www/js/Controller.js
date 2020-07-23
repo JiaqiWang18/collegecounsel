@@ -243,7 +243,8 @@ var Controller = function () {
             $(".admitted").text(`Total Admitted: ${data["total admitted"]}`)
             $(".graduationrate").text(`Graduation Rate: ${data["graduation rate"]}`)
             $(".Yield").text(`Yield Rate: ${data["admission yield"]}`)
-            $(".avgcost").text(`Average Annual Cost: $${data["average cost of attendance per year"]}`)
+            $(".avgcost").text("")
+            //$(".avgcost").text(`Average Annual Cost: $${data["average cost of attendance per year"]}`)
             $(".totalundergrad").text(`Total Undergrad Enrollment: ${data["estimated total undergrad enrollment"]}`)
             $(".totalenroll").text(`Total Student Enrollment: ${data["estimated total enrollment"]}`)
             if(data["test optional"]=="Yes"){

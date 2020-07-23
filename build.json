@@ -1,0 +1,17 @@
+{
+    "android": {
+        "debug": {
+            "keystore": "D:/collegecounselrelease/android.keystore",
+            "storePassword": "jiaqi200218",
+            "alias": "collegecounsel-app-key",
+            "password" : "jiaqi200218"
+        },
+        "release": {
+            "keystore": "D:/collegecounselrelease/android.keystore",
+            "storePassword": "jiaqi200218",
+            "alias": "collegecounsel-app-key",
+            "password" : "jiaqi200218"
+        }
+    }
+}
+
