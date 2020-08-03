@@ -378,7 +378,7 @@ var Controller = function () {
                             }, 500);
                         } else {
                             $(".majorinput").prop('disabled', true);
-                            $('majorfilter').animate({
+                            $('#majorfilter').animate({
                                 opacity: 0.6
                             }, 500);
                         }
@@ -644,7 +644,7 @@ var Controller = function () {
                             var noschool = document.createElement("h3")
                             var nodiv = document.createElement("div")
                             nodiv.setAttribute("class", "nodiv")
-                            noschool.innerHTML = "You have no colleges under you list. Go to 'Build my List' to add colleges."
+                            noschool.innerHTML = "You have no colleges under your list. Go to 'Build my List' to add colleges."
                             if (!list || Object.keys(list).length == 0) {
                                 nodiv.appendChild(noschool)
                                 listdiv.appendChild(nodiv)
@@ -669,7 +669,7 @@ var Controller = function () {
             var noschool = document.createElement("h3")
             var nodiv = document.createElement("div")
             nodiv.setAttribute("class", "nodiv")
-            noschool.innerHTML = "You have no colleges under you list. Go to 'Build my List' to add colleges."
+            noschool.innerHTML = "You have no colleges under your list. Go to 'Build my List' to add colleges."
             if (!list || Object.keys(list).length == 0) {
                 nodiv.appendChild(noschool)
                 listdiv.appendChild(nodiv)
